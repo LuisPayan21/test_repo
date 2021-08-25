@@ -2,29 +2,32 @@
 title: "test_file"
 author: "Luis Payan A01242242"
 date: "24/8/2021"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE} 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+library(tidyverse)
+#the data
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+#The "cars" data set references the speed and stopping distances of cars in the 1920s
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+*Source: "{datasets}"*
 
-```{r cars}
-summary(cars)
-```
+#Cars Scatterplot
 
-## Including Plots
+data(cars)
 
-You can also embed plots, for example:
+cars%>%
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+  ggplot()+
+  geom_point(aes(x=dist,y=speed))+
+  theme_minimal()+
+  labs(title="Speed vs Stopping Distance",
+  x="Stopping Distance (ft)",
+  y="Speed (MPH)")
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
